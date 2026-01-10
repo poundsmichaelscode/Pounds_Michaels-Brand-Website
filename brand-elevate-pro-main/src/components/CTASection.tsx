@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 const CTASection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const whatsappLink = "https://wa.me/1234567890";
+  const whatsappLink = "https://wa.me/2349055515211?text=Hello%2C%20I%20am%20interested%20in%20your%20services.%20Please%20provide%20more%20information.";
 
   return (
     <section className="py-24 relative overflow-hidden">

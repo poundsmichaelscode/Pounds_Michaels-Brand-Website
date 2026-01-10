@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo-pounds.jpg";
 
 const Hero = () => {
-  const whatsappLink = "https://wa.me/1234567890";
+  const whatsappLink = "https://wa.me/9049055515211?text=Hello%2C%20I%20am%20interested%20in%20your%20services.%20Please%20provide%20more%20information.";
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-20">
