@@ -199,7 +199,7 @@ const Pricing = () => {
                   }`}
                 >
                   <a
-                    href="https://wa.me/1234567890"
+                    href="https://wa.me/2349055515211?text=Hello%2C%20I%20am%20interested%20in%20your%20services.%20Please%20provide%20more%20information."
                     target="_blank"
                     rel="noopener noreferrer"
                   >
