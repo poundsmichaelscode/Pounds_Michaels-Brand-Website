@@ -1,54 +1,116 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, Code2, Layers, Database, Server } from "lucide-react";
 
-const projects = [
+type Project = {
+  title: string;
+  type: string;
+  description: string;
+  stack: string[];
+  href: string;
+  linkLabel: string;
+  icon: typeof Code2;
+};
+
+const projects: Project[] = [
   {
     title: "Pounds Michaels Brand Website",
-    type: "Own project · Live website",
-    description: "Responsive business website built with React, TypeScript, Vite and Tailwind CSS. Includes service sections, pricing and an enquiry form.",
+    type: "Owned project · Frontend website",
+    description: "A responsive business site with service pages, consultation enquiries and deployment to Vercel. It demonstrates production-facing UI development; it is not described as a full-stack application.",
+    stack: ["React", "TypeScript", "Vite", "Tailwind CSS"],
     href: "https://pounds-michaels-brand-website.vercel.app/",
-    linkLabel: "Visit website",
-  },
-  {
-    title: "Bincom OpenProject Deployment",
-    type: "Technical project · Public repository",
-    description: "Docker-based OpenProject deployment with PostgreSQL, reverse proxy, health checks, backup and recovery documentation. Shown as technical experience, not a consultancy client case study.",
-    href: "https://github.com/poundsmichaelscode/Bincom-OpenProject",
-    linkLabel: "View source",
+    linkLabel: "View live site",
+    icon: Code2,
   },
   {
     title: "Skillproof API",
-    type: "Technical project · Public repository",
-    description: "Django REST Framework API work with PostgreSQL, environment-based configuration, health endpoint and tests. Shown as technical experience, not a commercial client result.",
+    type: "Public technical project · Backend",
+    description: "A Django REST Framework API using PostgreSQL, environment-based configuration, health checks and tests. This public repository showcases backend engineering rather than a fabricated client outcome.",
+    stack: ["Python", "Django REST Framework", "PostgreSQL", "Docker"],
     href: "https://github.com/poundsmichaelscode/skillproof-api",
-    linkLabel: "View source",
+    linkLabel: "Explore repository",
+    icon: Database,
+  },
+  {
+    title: "Bincom OpenProject Deployment",
+    type: "Public technical project · Application infrastructure",
+    description: "Containerized OpenProject application deployment with PostgreSQL, reverse proxy, health checks and backup/recovery documentation. The application itself is open-source; the documented deployment work is the technical contribution.",
+    stack: ["Docker", "OpenProject", "PostgreSQL", "Caddy"],
+    href: "https://github.com/poundsmichaelscode/Bincom-OpenProject",
+    linkLabel: "Explore repository",
+    icon: Layers,
+  },
+  {
+    title: "Docker Webapp Deployment",
+    type: "Public technical project · Web app deployment",
+    description: "A containerized static web application using Nginx and Docker Compose, with a health endpoint and deployment documentation. Included as deployment experience, not as a fabricated full-stack customer project.",
+    stack: ["HTML", "Nginx", "Docker", "Docker Compose"],
+    href: "https://github.com/poundsmichaelscode/docker-webapp-deployment",
+    linkLabel: "Explore repository",
+    icon: Server,
   },
 ];
 
 const Portfolio = () => (
   <section id="portfolio" className="py-24 bg-background">
     <div className="container mx-auto px-4 max-w-6xl">
-      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-center mb-12"
+      >
         <span className="text-gold text-sm uppercase tracking-widest">Selected work</span>
-        <h2 className="font-display text-4xl md:text-5xl font-bold mt-4 mb-4">Projects & <span className="text-gradient-gold">Technical Experience</span></h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">A selection of publicly viewable projects demonstrating website development, backend engineering and deployment capabilities. These are not presented as paid consultancy engagements or verified client outcomes.</p>
+        <h2 className="font-display text-4xl md:text-5xl font-bold mt-4 mb-4">
+          Web, Backend & <span className="text-gradient-gold">Application Projects</span>
+        </h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto">
+          Publicly inspectable projects that demonstrate frontend development, backend
+          APIs and application deployment—the building blocks of full-stack delivery.
+          Technical projects are labelled honestly and are not claimed to be paid
+          consultancy case studies or proven customer outcomes.
+        </p>
       </motion.div>
-      <div className="grid md:grid-cols-3 gap-6">
-        {projects.map((project) => (
-          <article key={project.title} className="glass-card rounded-2xl p-8 flex flex-col">
-            <p className="text-gold text-xs uppercase tracking-wide mb-3">{project.type}</p>
-            <h3 className="font-display text-xl font-bold mb-4">{project.title}</h3>
-            <p className="text-muted-foreground text-sm leading-relaxed flex-1 mb-6">{project.description}</p>
-            <a href={project.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-gold hover:underline">
-              {project.linkLabel} <ExternalLink className="w-4 h-4" />
-            </a>
-          </article>
-        ))}
+      <div className="grid md:grid-cols-2 gap-6">
+        {projects.map((project) => {
+          const Icon = project.icon;
+          return (
+            <article key={project.title} className="glass-card rounded-2xl p-8 flex flex-col">
+              <Icon className="w-9 h-9 text-gold mb-5" aria-hidden="true" />
+              <p className="text-gold text-xs uppercase tracking-wide mb-3">{project.type}</p>
+              <h3 className="font-display text-xl font-bold mb-4">{project.title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-5">{project.description}</p>
+              <ul className="flex flex-wrap gap-2 mb-6" aria-label={`Technologies for ${project.title}`}>
+                {project.stack.map((tech) => (
+                  <li key={tech} className="px-3 py-1 text-xs rounded-full bg-gold/10 text-gold border border-gold/20">
+                    {tech}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-gold hover:underline mt-auto"
+              >
+                {project.linkLabel} <ExternalLink className="w-4 h-4" aria-hidden="true" />
+              </a>
+            </article>
+          );
+        })}
       </div>
       <div className="text-center mt-10">
-        <a href="https://github.com/poundsmichaelscode" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-gold hover:underline"><Github className="w-5 h-5" /> More projects on GitHub</a>
+        <a
+          href="https://github.com/poundsmichaelscode"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-gold hover:underline"
+        >
+          <Github className="w-5 h-5" aria-hidden="true" />
+          More public projects on GitHub
+        </a>
       </div>
     </div>
   </section>
 );
+
 export default Portfolio;
