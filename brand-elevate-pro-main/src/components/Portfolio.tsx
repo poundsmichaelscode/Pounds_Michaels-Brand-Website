@@ -22,6 +22,51 @@ const projects: Project[] = [
     icon: Code2,
   },
   {
+    title: "SkillGraph CognODB",
+    type: "Web project · Live demo · Stack unverified",
+    description: "A deployed web project presented as a live demonstration. Frontend/backend implementation and feature scope are pending source review.",
+    stack: [],
+    href: "https://skillgraph-cognodb-web-elbq.vercel.app/",
+    linkLabel: "View demo",
+    icon: Code2,
+  },
+  {
+    title: "Ground Break Tech Prototype",
+    type: "Web project · Live demo · Stack unverified",
+    description: "A technology prototype presented as a live web demonstration. Production readiness and full-stack functionality have not yet been verified.",
+    stack: [],
+    href: "https://ground-break-tech-prototype.vercel.app/",
+    linkLabel: "View demo",
+    icon: Code2,
+  },
+  {
+    title: "Financial Platform",
+    type: "Web project · Live demo · Stack unverified",
+    description: "A financial-platform web demonstration. No claims are made about real financial transactions, security certifications or production integrations.",
+    stack: [],
+    href: "https://financial-platform-orpin.vercel.app/",
+    linkLabel: "View demo",
+    icon: Code2,
+  },
+  {
+    title: "Moedify Media",
+    type: "Web project · Live demo · Stack unverified",
+    description: "A media/agency website demonstration. Commercial engagement details and technical implementation are not independently verified.",
+    stack: [],
+    href: "https://moedifymedia.vercel.app/",
+    linkLabel: "View demo",
+    icon: Code2,
+  },
+  {
+    title: "ALAT Defence Threat Detection Dashboard",
+    type: "Web project · Live demo · Stack unverified",
+    description: "A threat-detection dashboard interface demonstration. It is not presented as a validated live security monitoring system.",
+    stack: [],
+    href: "https://alat-defence-threat-detection-dashb.vercel.app/",
+    linkLabel: "View demo",
+    icon: Code2,
+  },
+  {
     title: "Skillproof API",
     type: "Public technical project · Backend",
     description: "A Django REST Framework API using PostgreSQL, environment-based configuration, health checks and tests. This public repository showcases backend engineering rather than a fabricated client outcome.",
@@ -64,10 +109,10 @@ const Portfolio = () => (
           Web, Backend & <span className="text-gradient-gold">Application Projects</span>
         </h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Publicly inspectable projects that demonstrate frontend development, backend
-          APIs and application deployment—the building blocks of full-stack delivery.
-          Technical projects are labelled honestly and are not claimed to be paid
-          consultancy case studies or proven customer outcomes.
+          Selected website demos and public repositories showcasing web interfaces,
+          backend APIs and application deployment. A live demo alone does not
+          establish that a project is full-stack. Technical stacks and client
+          outcomes are only claimed where supported by available evidence.
         </p>
       </motion.div>
       <div className="grid md:grid-cols-2 gap-6">
@@ -79,13 +124,13 @@ const Portfolio = () => (
               <p className="text-gold text-xs uppercase tracking-wide mb-3">{project.type}</p>
               <h3 className="font-display text-xl font-bold mb-4">{project.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed mb-5">{project.description}</p>
-              <ul className="flex flex-wrap gap-2 mb-6" aria-label={`Technologies for ${project.title}`}>
+              {project.stack.length > 0 && <ul className="flex flex-wrap gap-2 mb-6" aria-label={`Technologies for ${project.title}`}>
                 {project.stack.map((tech) => (
                   <li key={tech} className="px-3 py-1 text-xs rounded-full bg-gold/10 text-gold border border-gold/20">
                     {tech}
                   </li>
                 ))}
-              </ul>
+              </ul>}
               <a
                 href={project.href}
                 target="_blank"
